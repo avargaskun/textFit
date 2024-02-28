@@ -12,6 +12,7 @@ declare module "textfit" {
     reProcess?: boolean;
     widthOnly?: boolean;
     alignVertWithFlexbox?: boolean;
+    roundingFix?: number;
   }
 
   export = textFit;

@@ -41,6 +41,7 @@
     reProcess: true, // if true, textFit will re-process already-fit nodes. Set to 'false' for better performance
     widthOnly: false, // if true, textFit will fit text to element width, regardless of text height
     alignVertWithFlexbox: false, // if true, textFit will use flexbox for vertical alignment
+    roundingFix: 0,
   };
 
   return function textFit(els, options) {
@@ -158,8 +159,8 @@
       innerSpan.style.fontSize = mid + 'px';
       var innerSpanBoundingClientRect = innerSpan.getBoundingClientRect();
       if (
-        innerSpanBoundingClientRect.width <= originalWidth 
-        && (settings.widthOnly || innerSpanBoundingClientRect.height <= originalHeight)
+        innerSpanBoundingClientRect.width - settings.roundingFix <= originalWidth 
+        && (settings.widthOnly || innerSpanBoundingClientRect.height - settings.roundingFix <= originalHeight)
       ) {
         size = mid;
         low = mid + 1;
